@@ -9,23 +9,23 @@ namespace Module5TP1.Controllers
 {
     public class ChatController : Controller
     {
+        private static List<Chat> listChats = Chat.GetMeuteDeChats();
         // GET: Chat
         public ActionResult Index()
         {
-            List<Chat> chats = Chat.GetMeuteDeChats();
-            return View(chats);
+            return View(listChats);
         }
 
         // GET: Chat/Details/5
         public ActionResult Details(int id)
         {
-            return View(Chat.GetMeuteDeChats()[id-1]);
+            return View(listChats[id-1]);
         }
 
         // GET: Chat/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(Chat.GetMeuteDeChats()[id-1]);
+            return View(listChats[id-1]);
         }
 
         // POST: Chat/Delete/5
@@ -34,7 +34,7 @@ namespace Module5TP1.Controllers
         {
             try
             {
-                Chat.GetMeuteDeChats().RemoveAt(id-1);
+                listChats.RemoveAt(id-1);
 
                 return RedirectToAction("Index");
             }
