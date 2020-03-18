@@ -19,13 +19,13 @@ namespace Module5TP1.Controllers
         // GET: Chat/Details/5
         public ActionResult Details(int id)
         {
-            return View(Chat.GetMeuteDeChats()[id]);
+            return View(Chat.GetMeuteDeChats()[id-1]);
         }
 
         // GET: Chat/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(Chat.GetMeuteDeChats()[id]);
+            return View(Chat.GetMeuteDeChats()[id-1]);
         }
 
         // POST: Chat/Delete/5
@@ -34,7 +34,7 @@ namespace Module5TP1.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                Chat.GetMeuteDeChats().RemoveAt(id-1);
 
                 return RedirectToAction("Index");
             }
