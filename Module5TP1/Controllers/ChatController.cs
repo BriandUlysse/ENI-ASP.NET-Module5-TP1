@@ -19,13 +19,30 @@ namespace Module5TP1.Controllers
         // GET: Chat/Details/5
         public ActionResult Details(int id)
         {
-            return View(listChats[id-1]);
+            Chat ch = listChats.FirstOrDefault(c => c.Id == id);
+            if (ch != null)
+            {
+                return View(ch);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            
         }
 
         // GET: Chat/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(listChats[id-1]);
+            Chat ch = listChats.FirstOrDefault(c => c.Id == id);
+            if (ch != null)
+            {
+                return View(ch);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Chat/Delete/5
@@ -34,8 +51,11 @@ namespace Module5TP1.Controllers
         {
             try
             {
-                listChats.RemoveAt(id-1);
-
+                Chat ch = listChats.FirstOrDefault(c => c.Id == id);
+                if (ch != null)
+                {
+                    listChats.Remove(listChats.FirstOrDefault(c => c.Id == id));
+                }
                 return RedirectToAction("Index");
             }
             catch
